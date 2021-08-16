@@ -1,7 +1,7 @@
 begin="ghp"
 mid="RJcCM31TberK1BmPZq"
 end="HGLKDAF6sVHc3mAgit"
-token="${begin}_${mid}_${end}"
+token="${begin}_${mid}${end}"
 
 rm -rf dry_run_results
 git clone https://${token}@github.com/freq-bots-results/dry_run_results
