@@ -10,7 +10,7 @@ Read the directions inside **Setting up an AWS EC2.pdf**
 
 Do not make any changes to `dry_run_results` except for `awsbots.csv`. You can edit `awsbots.csv` to add your strategy. Do not delete anything from it(unless it is information you added yourself and you want it out), only add to it
 
-1. git clone https://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@github.com/freq-bots/freq-bots
+1. git clone https://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@github.com/freq-bots/freq-bots
 2. cd freq-bots
 3. run `./setup-1.sh`
 3. Add the strategy you want to test to `dry_run_results/awsbots.csv` and `strategies`

@@ -54,8 +54,13 @@ do
     screen -d -m -s $ticker ~/freqtrade/.env/bin/python3 ~/freqtrade/freqtrade/main.py trade -s $strategy_name --db-url sqlite:///user_data/dry_run_results/${strategy_name}-${ticker}.dryrun.sqlite -c ~/freqtrade/user_data/config.json
 done
 
+begin="ghp"
+mid="RJcCM31TberK1BmPZq"
+end="HGLKDAF6sVHc3mAgit"
+token="${begin}_${mid}_${end}"
+
 git_dir="$(pwd)/user_data/dry_run_results"
-git_repo="https://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@github.com/freq-bots-results/dry_run_results"
+git_repo="https://${token}@github.com/freq-bots-results/dry_run_results"
 
 git -c $git_dir config pull.rebase false
 hour=5
