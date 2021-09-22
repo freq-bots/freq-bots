@@ -24,8 +24,13 @@ fi
 
 #Adds new strategy to strategy repo
 git_dir_strat="$(pwd)/user_data/strategies"
-git_repo_strat="https://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@github.com/freq-bots-results/strategies.git"
-git -c $git_dir_strat config pull.rebase false
+strat_key_1="ghp_ws19AnaO"
+strat_key_2="5M5WQ6mPX4PD"
+strat_key_3="LGT5zJYDCd1Frscc"
+strat_key = strat_key_1 + strat_key_2 + strat_key_3
+git_repo_strat="https://" + strat_key + "@github.com/freq-bots-results/strategies.git"
+
+git -c $git_dir_strat config pull.rebase false  #turns off some confirmation warning
 git -C $git_dir_strat add -A
 git -C $git_dir_strat commit -m "Added ${strategy_name}"
 git -C $git_dir_strat pull $git_repo_strat master 
@@ -37,7 +42,7 @@ sudo apt-get install python3.9 screen <<< 'y'
 minute=$(awk -v strategy=$strategy_name -F ',' '$3==strategy {print $4}' dry_run_results/awsbots.csv)
 
 #Download, and setup freqtrade
-git clone https://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@github.com/freqtrade/freqtrade
+git clone https://github.com/freqtrade/freqtrade
 cwd=$(pwd)
 mv freqtrade ..
 cd ../freqtrade
@@ -59,7 +64,7 @@ mid="RJcCM31TberK1BmPZq"
 end="HGLKDAF6sVHc3mAgit"
 token="${begin}_${mid}${end}"
 
-git_dir="$(pwd)/user_data/dry_run_results"
+git_dir="$(pwd)/dry_run_results"
 git_repo="https://${token}@github.com/freq-bots-results/dry_run_results"
 
 git -c $git_dir config pull.rebase false

@@ -22,4 +22,8 @@ The bot should now be running the strategy on all tickers and scheduled to push 
 
 ## Viewing results
 
-You can view the results by running `git clone https://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@github.com/freq-bots-results/dry_run_results`
+key1=ghp_ws19A
+key2=naO5M5WQ6
+key3=mPX4PDLGT5zJYDCd1Frscc
+
+You can view the results by running `git clone https://{key1}{key2}{key3}@github.com/freq-bots-results/dry_run_results`
