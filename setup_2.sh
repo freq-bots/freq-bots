@@ -9,13 +9,10 @@ aws_bots_csv="${freqtrade_strategy_dir}/awsbots.csv"
 freqtrade_script="${freqtrade_dir}/freqtrade/main.py"
 python="${freqtrade_dir}/.env/bin/python3"
 
-function results_key {
-    begin="ghp"
-    mid="3PQpKb3Vay06C6Cjoy"
-    end="RrS3YWxLS5TN0OGMjU"
-    echo "${begin}_${mid}${end}"
-}
-
+begin="ghp"
+mid="3PQpKb3Vay06C6Cjoy"
+end="RrS3YWxLS5TN0OGMjU"
+results_key="${begin}_${mid}${end}"
 git_repo="https://${results_key}@github.com/freq-bots-results"
 
 function install_dependencies {
@@ -55,9 +52,9 @@ function get_tickers {
 function freqtrade_setup {
     #Download, and setup freqtrade
     git clone https://github.com/freqtrade/freqtrade
-    mv freqtrade $cwd
+    # mv freqtrade $cwd
     cd $freqtrade_dir
-    sh ${freqtrade_dir}/setup.sh -i <<< 'n n n n'
+    bash ${freqtrade_dir}/setup.sh -i <<< 'n n n n'
     rm -rf ${freqtrade_strategy_dir}
     mv ${initial_strategy_dir} ${freqtrade_strategy_dir}
     mv ${initial_results_dir} ${freqtrade_results_dir}
@@ -108,7 +105,7 @@ function create_cronfile {
 
 function help {
     echo "usage:"
-    echo "	-s,--strategy    Install freqtrade from scratch"
+    echo "	-s,--strategy    Strategy name"
     echo "	-t,--test        Test run."
 }
 
@@ -121,25 +118,23 @@ function main {
     run_freqtrade
 }
 
-#Get strategy name
-while [[ $# -gt 0 ]]; do
-  key="$1"
-
-  case $key in
-    -s|--strategy)
-      strategy_name="$2"
-      shift # past argument
-      shift # past value
-      ;;
-    -t|--test)
-      test_run=true
-      shift # past argument
-      shift # past value
-      ;;
-    *)    # unknown option
-    help
-    ;;
-  esac
+for arg in "$@"; do
+    case $arg in
+        -s|--strategy )
+            strategy_name=$2
+            shift # past argument
+            shift # past value
+            ;;
+        -t|--test )
+            test_run=true
+            shift # past argument
+            ;;
+    esac
 done
 
-# main
+if [ -z ${strategy_name+x} ]; then
+    help
+    exit 2
+fi
+
+main

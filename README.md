@@ -11,7 +11,7 @@ Do not make any changes to `dry_run_results`. You can edit `strategies/awsbots.c
 1. git clone https://github.com/freq-bots/freq-bots
 2. cd freq-bots
 3. run `./setup_1.sh`
-3. Add the strategy you want to test to `dry_run_results/awsbots.csv` and `strategies`
+3. Add the strategy you want to test to `strategies/awsbots.csv` and `strategies`
 5. run `./setup_2.sh` 
 
 The bot should now be running the strategy on all tickers and scheduled to push the results to github everyday
