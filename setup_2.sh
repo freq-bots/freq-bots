@@ -16,7 +16,7 @@ function results_key {
     echo "${begin}_${mid}${end}"
 }
 
-git_repo="https://${ results_key }@github.com/freq-bots-results"
+git_repo="https://${results_key}@github.com/freq-bots-results"
 
 function install_dependencies {
     sudo apt-get update
